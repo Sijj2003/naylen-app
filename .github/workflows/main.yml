@@ -24,13 +24,13 @@ jobs:
     - name: Install dependencies
       run: |
         pip install pyinstaller pandas reportlab
-
+        
     - name: Build executable
       run: |
         pyinstaller --onefile --windowed --add-data "logo.png:." main.py
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: Windows-Executable-${{ matrix.architecture }}
         path: dist/main.exe
