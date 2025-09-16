@@ -23,11 +23,11 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install pyinstaller pandas reportlab
+        pip install pyinstaller pandas reportlab pyqt5
         
     - name: Build executable
       run: |
-        pyinstaller --onefile --windowed --add-data "logo.png:." --hidden-import "pandas._libs.tslibs.np_datetime" --hidden-import "pandas._libs.tslibs.np_timedelta" --hidden-import "reportlab" main.py
+        pyinstaller --onefile --windowed --add-data "logo.png:." --hidden-import "pandas._libs.tslibs.np_datetime" --hidden-import "pandas._libs.tslibs.np_timedelta" --hidden-import "reportlab" --hidden-import "PyQt5" main.py
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
