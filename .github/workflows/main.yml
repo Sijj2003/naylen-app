@@ -1,0 +1,36 @@
+name: Build PyInstaller Executable
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        python-version: ['3.10']
+        architecture: ['x64', 'x86']
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+        architecture: ${{ matrix.architecture }}
+
+    - name: Install dependencies
+      run: |
+        pip install pyinstaller pandas reportlab
+
+    - name: Build executable
+      run: |
+        pyinstaller --onefile --windowed --add-data "logo.png:." main.py
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: Windows-Executable-${{ matrix.architecture }}
+        path: dist/main.exe
