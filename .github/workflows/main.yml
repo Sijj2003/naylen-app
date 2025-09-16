@@ -9,7 +9,7 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        python-version: ['3.10']
+        python-version: ['3.8'] # <-- Cambiamos de 3.10 a 3.8 para un mejor soporte de 32-bit
         architecture: ['x64', 'x86']
 
     steps:
