@@ -23,7 +23,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install pyinstaller pandas==1.2.5 numpy==1.19.5 reportlab pyqt5
+        pip install pyinstaller pandas==1.2.5 numpy==1.19.5 reportlab pyqt5 fpdf
         
     - name: Build executable
       run: |
